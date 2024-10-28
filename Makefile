@@ -1,7 +1,7 @@
 
-SCRS		=  main.c
+SCRS		=  main.c 
 
-LIB_ABR		= libft
+LIB_ABR		= /libft/libft.a
 LIB_NAME	= ft
 OBJDIR		= obj
 OBJS		= $(addprefix $(OBJDIR)/, $(SCRS:.c=.o))
