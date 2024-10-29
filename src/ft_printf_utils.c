@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 10:35:46 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/29 12:19:47 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:46:11 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,17 @@ int	ft_printptr_fd(void *ptr, int fd)
 	address = (unsigned long)ptr;
 	len = 2;
 	write(fd, "0x", 2);
-	len += ft_puthex_fd(address, fd);
+	len += ft_puthex_fd(address, 'x', fd);
 	return (len);
 }
 
-int	ft_puthex_fd(unsigned long num, int fd)
+int	ft_puthex_fd(unsigned long num, int format, int fd)
 {
 	const char	*hex_chars = "0123456789abcdef";
 	int			count ;
 
+	if (format == 'X')
+		hex_chars = "0123456789ABCDEF";
 	count = 0;
 	if (num >= 16)
 		count += ft_puthex_fd(num / 16, fd);

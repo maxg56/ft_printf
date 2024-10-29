@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:37:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/29 16:19:10 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/10/29 16:22:33 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/10/29 16:41:26 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
 
-# include "libft.h"
-# include <stdarg.h>
-# include <stdio.h>
-# include <unistd.h>
-
-# ifndef FD
-#  define FD 1
-# endif 
-
-int	ft_printstr(char *str);
-int	ft_printnbr(int n);
-int	ft_printpercent_fd(int fd);
-int	ft_printptr_fd(void *ptr, int fd);
-int	ft_puthex_fd(unsigned long num, int format, int fd);
-int	ft_printf(const char *str, ...);
+int	ft_print_unsigned_fd(unsigned int n, int FD)
+{
 
 
-#endif
+}
