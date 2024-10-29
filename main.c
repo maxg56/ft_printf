@@ -6,14 +6,14 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:50:44 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/28 12:07:03 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:20:54 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "include/ft_printf.h"
 
 int	main(void)
 {
-	ft_putnbr_fd(45,1);
+	ft_putnbr_fd(45, 1);
 	return (0);
 }

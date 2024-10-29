@@ -6,12 +6,11 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:01:20 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/28 16:18:19 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:20:23 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int	check_base(char *base)
 {
