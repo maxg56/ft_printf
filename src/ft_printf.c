@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:33:12 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/29 12:19:28 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:04:42 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_formats(va_list args, const char format)
 	else if (format == 'u')
 		print_length += ft_print_unsigned(va_arg(args, unsigned int), FD);
 	else if (format == 'x' || format == 'X')
-		print_length += ft_printhex_fd(va_arg(args, unsigned int), format);
+		print_length += ft_printhex_fd(va_arg(args, unsigned int), FD);
 	else if (format == '%')
 		print_length += ft_printpercent_fd(FD);
 	return (print_length);
