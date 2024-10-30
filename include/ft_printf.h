@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:37:31 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/30 14:04:11 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:30:26 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,4 @@ int	ft_print_u_fd(unsigned int n, int fd);
 int	ft_print_x_fd(unsigned int n, int format, int fd);
 
 int	ft_printf(const char *str, ...);
-
-
 #endif
-
-

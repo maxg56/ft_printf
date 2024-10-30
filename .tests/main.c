@@ -556,24 +556,23 @@ void	test_invalid_spec(void)
 	x = 0;
 	y = 0;
 	printf("\n----------- TEST: INVALID TYPE -----------\n\n");
-
-	x = printf("  Or\t:\tInvalid: [%%w] = [%w]\n");
+	x = printf("  Or\t:\tInvalid: [%%w] = [%%w]\n");
 	y = ft_printf("  Ft\t:\tInvalid: [%%w] = [%w]\n");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	x = printf("  Or\t:\tInvalid: [%%0] = [%0]\n");
+	x = printf("  Or\t:\tInvalid: [%%0] = [%%0]\n");
 	y = ft_printf("  Ft\t:\tInvalid: [%%0] = [%0]\n");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	x = printf("  Or\t:\tInvalid: [%%14k] = [%14k]\n");
+	x = printf("  Or\t:\tInvalid: [%%14k] = [%%14k]\n");
 	y = ft_printf("  Ft\t:\tInvalid: [%%14k] = [%14k]\n");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	x = printf("  Or\t:\tInvalid: [%%-14k] = [%-14k]\n");
+	x = printf("  Or\t:\tInvalid: [%%-14k] = [%%-14k]\n");
 	y = ft_printf("  Ft\t:\tInvalid: [%%-14k] = [%-14k]\n");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 
-	x = printf("  Or\t:\tInvalid: [%%wawa] = [%wawa]\n");
+	x = printf("  Or\t:\tInvalid: [%%wawa] = [%%wawa]\n");
 	y = ft_printf("  Ft\t:\tInvalid: [%%wawa] = [%wawa]\n");
 	printf("Printf = %d, ft_printf = %d\n\n", x, y);
 }
@@ -614,7 +613,7 @@ int	main(int argc, char const **argv)
 	if (argc == 2)
 	{
 		MANDATORY_TESTS();
-		if (argv[1] == '2' )
+		if (argv[1][0] == '2' )
 			Bonus_tsts();
 	}
 	return (0);

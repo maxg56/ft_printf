@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_u.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:52:19 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/30 14:07:34 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/10/23 09:20:23 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/10/25 11:57:07 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static int	ft_put_u(unsigned int n, int fd)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	count;
+	t_list	*init;
+	t_list	*new;
+	void	*new_content;
 
-	count = 0;
-	if (n >= 10)
+	if (!f || !del || !lst)
+		return (NULL);
+	init = NULL;
+	while (lst)
 	{
-		count += ft_put_u(n / 10, fd);
-		count += ft_put_u(n % 10, fd);
+		new_content = (*f)(lst->content);
+		new = ft_lstnew(new_content);
+		if (!new)
+		{
+			(*del)(new_content);
+			ft_lstclear(&init, del);
+		}
+		ft_lstadd_back(&init, new);
+		lst = lst->next;
 	}
-	else
-		count += ft_print_c(n + 48, fd);
-	return (count);
-}
-
-int	ft_print_u_fd(unsigned int n, int fd)
-{
-	int	count;
-
-	count = 0;
-	count += ft_put_u(n, fd);
-	if (count < 0)
-		return (-1);
-	return (count);
+	return (init);
 }

@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:05:22 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/30 14:12:34 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:32:53 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_formats(va_list args, const char format)
 	else if (format == 'p')
 		print_length += ft_print_p_fd(va_arg(args, uintptr_t), FD);
 	else if (format == 'd' || format == 'i')
-		print_length += ft_print_d(va_arg(args, int), FD);
+		print_length += ft_print_d_fd(va_arg(args, int), FD);
 	else if (format == 'u')
 		print_length += ft_print_u_fd(va_arg(args, unsigned int), FD);
 	else if (format == 'x' || format == 'X')
@@ -57,7 +57,7 @@ int	ft_printf(const char *str, ...)
 			i++;
 		}
 		else
-			ft_printchar_fd(str[i], FD);
+			print_length += ft_printchar_fd(str[i], FD);
 		i++;
 	}
 	va_end(args);

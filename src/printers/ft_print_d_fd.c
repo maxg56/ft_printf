@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_primt_x.c                                       :+:      :+:    :+:   */
+/*   ft_print_d_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:59:18 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/30 14:03:11 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/10/30 13:07:12 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/10/30 17:28:49 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_put_hex(unsigned int n, char *chars, int fd)
+static int	_ft_print_d(long n, int fd)
 {
-	int	count;
-
-	count = 0;
-	if (n >= 16)
-	{
-		count += ft_put_hex(n / 16, chars, fd);
-		count += ft_put_hex(n % 16, chars, fd);
-	}
-	else
-		count += ft_print_c(chars[n], fd);
-	return (count);
+	if (n >= 10)
+		return (ft_print_d_fd(n / 10, fd) + ft_print_d_fd(n % 10, fd));
+	return (ft_print_c_fd(n + 48, fd));
 }
 
-int	ft_print_x_fd(unsigned int n, int format, int fd)
+int	ft_print_d_fd(int n, int fd)
 {
-	char	*chars;
+	long	_n;
 
-	if (format == 'x')
-		chars = "0123456789abcdef";
-	else
-		chars = "0123456789ABCDEF";
-	return (ft_put_hex(n, chars, fd));
+	_n = n;
+	if (n < 0)
+		return (write(fd, "-", 1) + _ft_print_d(-_n, fd));
+	return (_ft_print_d(_n, fd));
 }

@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_d_fd.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:07:12 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/30 14:02:21 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/10/15 09:17:55 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/10/23 16:15:13 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_print_d_fd(int n, int fd)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	long	ln;
+	char	*s;
+	char	*d;
+	size_t	i;
 
-	ln = n;
-	if (ln < 0)
-		return (write(fd, "-", 1) + ft_print_d(-ln, fd));
-	if (ln >= 10)
-		return (ft_print_d(ln / 10, fd) + ft_print_d(ln % 10, fd));
-	return (ft_print_c(ln + '0', fd));
+	if (len == 0 || (!dst && !src))
+		return (dst);
+	s = (char *)src;
+	d = (char *)dst;
+	i = 0;
+	if (d > s)
+		while (len-- > 0)
+			d[len] = s[len];
+	else
+	{
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	return (dst);
 }

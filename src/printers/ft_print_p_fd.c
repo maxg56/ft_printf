@@ -6,7 +6,7 @@
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 13:28:04 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/30 14:06:32 by mgendrot         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:19:41 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_put_ptr(uintptr_t ptr, int fd)
 		count += ft_put_ptr(ptr % 16, fd);
 	}
 	else
-		count += ft_print_c("0123456789abcdef"[ptr], fd);
+		count += ft_print_c_fd("0123456789abcdef"[ptr], fd);
 	if (count < 0)
 		return (-1);
 	return (count);
@@ -36,7 +36,7 @@ int	ft_print_p_fd(uintptr_t ptr, int fd)
 	count = 0;
 	if (!ptr)
 		return (ft_printf("(nil)"));
-	count += ft_print_s("0x");
+	count += ft_print_s_fd("0x", fd);
 	if (count < 0)
 		return (-1);
 	count += ft_put_ptr(ptr, fd);
