@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 11:33:12 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/29 16:18:51 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/10/30 12:05:22 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/10/30 14:12:34 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h" 
+#include "ft_printf.h"
 
 int	ft_printchar_fd(int c, int fd)
 {
@@ -24,19 +24,19 @@ int	ft_formats(va_list args, const char format)
 
 	print_length = 0;
 	if (format == 'c')
-		print_length += ft_printchar_fd(va_arg(args, int), FD);
+		print_length += ft_print_c_fd(va_arg(args, int), FD);
 	else if (format == 's')
-		print_length += ft_printstr(va_arg(args, char *));
+		print_length += ft_print_s_fd(va_arg(args, char *), FD);
 	else if (format == 'p')
-		print_length += ft_printptr_fd(va_arg(args, unsigned long long), FD);
+		print_length += ft_print_p_fd(va_arg(args, uintptr_t), FD);
 	else if (format == 'd' || format == 'i')
-		print_length += ft_printnbr(va_arg(args, int));
+		print_length += ft_print_d(va_arg(args, int), FD);
 	else if (format == 'u')
-		print_length += ft_print_unsigned(va_arg(args, unsigned int), FD);
+		print_length += ft_print_u_fd(va_arg(args, unsigned int), FD);
 	else if (format == 'x' || format == 'X')
-		print_length += ft_puthex_fd(va_arg(args, unsigned int), format, FD);
+		print_length += ft_print_x_fd(va_arg(args, unsigned int), format, FD);
 	else if (format == '%')
-		print_length += ft_printpercent_fd(FD);
+		print_length += ft_print_pct_fd(FD);
 	return (print_length);
 }
 
@@ -57,7 +57,7 @@ int	ft_printf(const char *str, ...)
 			i++;
 		}
 		else
-			ft_puthex_fd(str[i], FD);
+			ft_printchar_fd(str[i], FD);
 		i++;
 	}
 	va_end(args);

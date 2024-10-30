@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_print_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgendrot <mgendrot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 16:22:33 by mgendrot          #+#    #+#             */
-/*   Updated: 2024/10/29 16:41:26 by mgendrot         ###   ########.fr       */
+/*   Created: 2024/10/30 11:57:54 by mgendrot          #+#    #+#             */
+/*   Updated: 2024/10/30 14:01:49 by mgendrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-int	ft_print_unsigned_fd(unsigned int n, int FD)
+#include "ft_printf.h"
+
+int	ft_print_c_fd(char c, int fd)
 {
-
-
+	return (write(fd, &c, 1));
 }
