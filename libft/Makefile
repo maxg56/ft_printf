@@ -62,33 +62,40 @@ SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 #_______________________#
+TOTAL_FILES     =   $(words $(SRC_FILES))
+COMPILED_COUNT  =   0
 
+# Fonction de progression globale
+define progress_update
+    $(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT)+1))))
+    @echo  "$(CYAN)Compilation progress: $$(($(COMPILED_COUNT) * 100 / $(TOTAL_FILES)))%$(DEF_COLOR) \r"
+endef
 OBJSF		=	.cache_exists
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
 			@${AR} ${NAME} ${OBJS}
-			@echo -e "$(GREEN)$(BOLD)Libft compiled!$(END)$(DEF_COLOR)"
+			@echo "$(GREEN)Libft compiled!$(DEF_COLOR)"
 
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
 			@mkdir -p $(dir $@)
-			@echo -e "$(YELLOW)Compiling: $< $(DEF_COLOR)\n"
+			$(progress_update)
 			@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 $(OBJSF):
 
 clean:
 			@$(RM) -rf $(OBJS_DIR)
 			@$(RM) -f $(OBJSF)
-			@echo -e "$(BLUE)libft objects files cleaned!$(DEF_COLOR)"
+			@echo  "$(BLUE)libft objects files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
 			@${RM} -f ${NAME}
-			@echo -e "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
+			@echo  "$(CYAN)libft executable files cleaned!$(DEF_COLOR)"
 
 re:			fclean all
-			@echo -e "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
+			@echo  "$(GREEN)Cleaned and rebuilt everything for libft!$(DEF_COLOR)"
 
 
 tests:		all
