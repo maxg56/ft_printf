@@ -31,8 +31,8 @@ COMPILED_COUNT  =   0
 
 
 define progress_update
-    $(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT)+1))))
-    @echo "$(CYAN)Compilation progress: $$(($(COMPILED_COUNT) * 100 / $(TOTAL_FILES)))%$(DEF_COLOR)\r"
+	$(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT)+1))))
+	@echo "$(CYAN)Compilation progress: $$(($(COMPILED_COUNT) * 100 / $(TOTAL_FILES)))%$(DEF_COLOR)\r"
 endef
 
 ###
