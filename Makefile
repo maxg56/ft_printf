@@ -15,6 +15,9 @@ DEF_COLOR   = \033[0;39m
 GREEN       = \033[0;92m
 BLUE        = \033[0;94m
 CYAN        = \033[0;96m
+TERM_UP				=	\033[1A
+TERM_CLEAR_LINE		=	\033[2K\r
+MAGENTA				=	\033[0;95m
 
 # Sources
 SRC_FILES       =   ft_printf
@@ -31,8 +34,9 @@ COMPILED_COUNT  =   0
 
 
 define progress_update
-	$(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT)+1))))
-	@echo "$(CYAN)Compilation progress: $$(($(COMPILED_COUNT) * 100 / $(TOTAL_FILES)))%$(DEF_COLOR)\r"
+	printf "$(TERM_UP)";
+	$(eval COMPILED_COUNT=$(shell expr $(COMPILED_COUNT) + 1))
+	@printf "$(TERM_CLEAR_LINE)$(CYAN)Compilation progress: $$(($(COMPILED_COUNT) * 100 / $(TOTAL_FILES)))%%$(DEF_COLOR)\n"
 endef
 
 ###
@@ -49,12 +53,16 @@ $(NAME):	$(OBJ) $(OBJ_PRINTERS)
 			@echo  "$(GREEN)ft_printf compiled!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
-			$(progress_update)
+			@$(progress_update)
+			@$(CC) $(CFLAGS)  -c $< -o $@
+			
+
+
+	
+$(OBJ_DIR)%.o: $(PRINTERS_DIR)%.c | $(OBJF)
+			@$(progress_update)
 			@$(CC) $(CFLAGS)  -c $< -o $@
 
-$(OBJ_DIR)%.o: $(PRINTERS_DIR)%.c | $(OBJF)
-			$(progress_update)
-			@$(CC) $(CFLAGS)  -c $< -o $@
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
@@ -74,5 +82,6 @@ re:			fclean all
 
 norm:
 			@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
+
 
 .PHONY:		all clean fclean re norm

@@ -13,19 +13,14 @@ CFLAGS		= -Wall -Wextra -Werror -I
 RM			= rm
 AR			= ar rcs
 MKDIR		= mkdir
-#Colors
-
-DEF_COLOR = \033[0;39m
-GRAY = \033[0;90m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
-BLUE = \033[0;94m
-MAGENTA = \033[0;95m
-CYAN = \033[0;96m
-WHITE = \033[0;97m
-BOLD=$'\x1b[1m
-END=$'\x1b[0m
+# Colors
+DEF_COLOR   = \033[0;39m
+GREEN       = \033[0;92m
+BLUE        = \033[0;94m
+CYAN        = \033[0;96m
+TERM_UP				=	\033[1A
+TERM_CLEAR_LINE		=	\033[2K\r
+MAGENTA				=	\033[0;95m
 
 #Sources
 
@@ -67,9 +62,11 @@ COMPILED_COUNT  =   0
 
 # Fonction de progression globale
 define progress_update
-    $(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT)+1))))
-    @echo  "$(CYAN)Compilation progress: $$(($(COMPILED_COUNT) * 100 / $(TOTAL_FILES)))%$(DEF_COLOR) \r"
+	printf "$(TERM_UP)";
+	$(eval COMPILED_COUNT=$(shell expr $(COMPILED_COUNT) + 1))
+	@printf "$(TERM_CLEAR_LINE)$(CYAN)Compilation progress: $$(($(COMPILED_COUNT) * 100 / $(TOTAL_FILES)))%%$(DEF_COLOR)\n"
 endef
+
 OBJSF		=	.cache_exists
 
 all:		${NAME}
