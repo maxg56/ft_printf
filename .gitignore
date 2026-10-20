@@ -1,0 +1,10 @@
+# Fichiers objets et archives compilées
+*.o
+*.a
+obj/
+.cache_exists
+
+# Exécutables de test
+.tests/tests_exec
+libft/tests.out
+*.out
